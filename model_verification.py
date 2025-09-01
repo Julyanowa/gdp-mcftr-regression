@@ -108,36 +108,3 @@ class RegressionVerifier:
         return f_emp, f_emp > f_cr
 
 
-# --- тест ---
-if __name__ == "__main__":
-    x = [1, 2, 4, 3, 5, 3, 4]
-    y = [3, 7, 15, 10, 17, 10, 15]
-
-    model = RegressionVerifier(x, y)
-
-    print("✅ Коэффициенты регрессии:")
-    print(f"a (intercept): {model.a:.3f}")
-    print(f"b (slope): {model.b:.3f}")
-
-    print("\n📊 Качество модели:")
-    print(f"TSS = {model.tss():.3f}")
-    print(f"ESS = {model.ess():.3f}")
-    print(f"RSS = {model.rss():.3f}")
-    print(f"R^2 = {model.r_squared():.3f}")
-
-    print("\n📉 Стандартные ошибки:")
-    se_a, se_b = model.standard_errors()
-    print(f"SE(a) = {se_a:.3f}, SE(b) = {se_b:.3f}")
-
-    print("\n🧪 Проверка значимости параметров:")
-    t_a, t_b = model.t_values()
-    print(f"t(a) = {t_a:.3f}, t(b) = {t_b:.3f}")
-    print("Критическое t =", model.t_critical())
-    signif = model.check_parameters_significance()
-    print("a значим?" , "✅" if signif["a"][1] else "❌")
-    print("b значим?" , "✅" if signif["b"][1] else "❌")
-
-    print("\n🧪 Проверка значимости всей модели:")
-    f_emp, f_ok = model.check_model_significance()
-    print(f"F-эмп = {f_emp:.3f}, F-крит = {model.f_critical()}")
-    print("Модель значима?" , "✅" if f_ok else "❌")
