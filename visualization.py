@@ -44,14 +44,3 @@ class RegressionVisualizer:
         plt.show()
 
 
-# --- тест ---
-if __name__ == "__main__":
-    # Данные: выпуск (X) и выручка (Y)
-    x = [1, 2, 4, 3, 5, 3, 4]
-    y = [3, 7, 15, 10, 17, 10, 15]
-
-    visualizer = RegressionVisualizer(x, y)
-
-    print("📊 Построение визуализации модели регрессии")
-    visualizer.plot_regression()
-    visualizer.plot_residuals()
